@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra Toolkit</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="pt-4 pb-3">
+            <h1>Linear Algebra Toolkit</h1>
+            <p class="lead">A collection of linear algebra tools for tedious calculations.</p>
+        </header>
+
+        <div class="tab-container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="inverse-tab" data-bs-toggle="tab" data-bs-target="#inverse" type="button" role="tab" aria-controls="inverse" aria-selected="true">Matrix Inverse</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ortho-tab" data-bs-toggle="tab" data-bs-target="#ortho" type="button" role="tab" aria-controls="ortho" aria-selected="false">Gram-Schmidt</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="basis-tab" data-bs-toggle="tab" data-bs-target="#basis" type="button" role="tab" aria-controls="basis" aria-selected="false">Rank Nullity</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ref-tab" data-bs-toggle="tab" data-bs-target="#ref" type="button" role="tab" aria-controls="ref" aria-selected="false">Row Echelon Form</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="rref-tab" data-bs-toggle="tab" data-bs-target="#rref" type="button" role="tab" aria-controls="rref" aria-selected="false">Reduced Row Echelon</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="equations-tab" data-bs-toggle="tab" data-bs-target="#equations" type="button" role="tab" aria-controls="equations" aria-selected="false">Solve Equations</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content p-3" id="myTabContent">
+                <!-- Matrix Inverse Tab -->
+                <div class="tab-pane fade show active" id="inverse" role="tabpanel" aria-labelledby="inverse-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>Matrix Inverse Calculator</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="inverse-size" class="form-label">Square Matrix Size:</label>
+                                        <div class="input-group">
+                                            <input type="number" id="inverse-size" class="form-control" min="1" max="10" value="3" placeholder="Size (e.g., 3 for 3x3)">
+                                            <button class="btn btn-primary" id="create-inverse-matrix">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="inverse-matrix-container" class="matrix-container">
+                                        <!-- Matrix will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-inverse">Calculate Inverse</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="inverse-result-steps" class="step-container" style="display: none;">
+                                        <div id="inverse-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="inverse-step-matrix" class="matrix-container mb-3">Step matrix goes here...</div>
+                                        <div id="inverse-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="inverse-prev-step">Prev Step</button>
+                                            <span id="inverse-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="inverse-next-step">Next Step</button>
+                                        </div>
+                                         <button class="btn btn-outline-primary btn-sm mt-3" id="inverse-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <div id="inverse-result-placeholder" class="result-container">
+                                         <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gram-Schmidt Tab -->
+                <div class="tab-pane fade" id="ortho" role="tabpanel" aria-labelledby="ortho-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>Gram-Schmidt Orthonormalization</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Vector Dimensions:</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Number of vectors:</span>
+                                            <input type="number" id="ortho-vectors" class="form-control" min="1" max="10" value="3" placeholder="Vectors">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Dimension of each vector:</span>
+                                            <input type="number" id="ortho-dimension" class="form-control" min="1" max="10" value="3" placeholder="Dimension">
+                                            <button class="btn btn-primary" id="create-vectors">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="vectors-container" class="vectors-container">
+                                        <!-- Vectors will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-orthonormal">Calculate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step-by-step container for Gram-Schmidt -->
+                                    <div id="ortho-result-steps" class="step-container" style="display: none;"> <!-- Initially hidden -->
+                                        <div id="ortho-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="ortho-step-vectors" class="vectors-container mb-3">Step vectors go here...</div> <!-- Changed from matrix-container -->
+                                        <div id="ortho-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="ortho-prev-step">Prev Step</button>
+                                            <span id="ortho-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="ortho-next-step">Next Step</button>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-3" id="ortho-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <!-- Placeholder for final results or errors -->
+                                    <div id="ortho-result-placeholder" class="result-container"> <!-- Renamed original ortho-result to placeholder -->
+                                        <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Matrix Spaces Tab -->
+                <div class="tab-pane fade" id="basis" role="tabpanel" aria-labelledby="basis-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>Rank Nullity Theorem</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Matrix Dimensions:</label>
+                                        <div class="input-group">
+                                            <input type="number" id="basis-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <span class="input-group-text">×</span>
+                                            <input type="number" id="basis-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <button class="btn btn-primary" id="create-basis-matrix">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="basis-matrix-container" class="matrix-container">
+                                        <!-- Matrix will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-bases">Verify</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step-by-step container for Matrix Spaces -->
+                                    <div id="basis-result-steps" class="step-container" style="display: none;"> <!-- Initially hidden -->
+                                        <div id="basis-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="basis-step-matrix" class="matrix-container mb-3">Step matrix goes here...</div>
+                                        <div id="basis-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="basis-prev-step">Prev Step</button>
+                                            <span id="basis-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="basis-next-step">Next Step</button>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-3" id="basis-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <!-- Placeholder for final results or errors -->
+                                    <div id="basis-result-placeholder" class="result-container">
+                                        <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Row Echelon Form (REF) Tab -->
+                <div class="tab-pane fade" id="ref" role="tabpanel" aria-labelledby="ref-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>Row Echelon Form (REF) Calculator</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Matrix Dimensions:</label>
+                                        <div class="input-group">
+                                            <input type="number" id="ref-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <span class="input-group-text">×</span>
+                                            <input type="number" id="ref-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <button class="btn btn-primary" id="create-ref-matrix">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="ref-matrix-container" class="matrix-container">
+                                        <!-- Matrix will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-ref">Calculate REF</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result (Steps)</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step-by-step container for REF -->
+                                    <div id="ref-result-steps" class="step-container" style="display: none;"> 
+                                        <div id="ref-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="ref-step-matrix" class="matrix-container mb-3">Step matrix goes here...</div>
+                                        <div id="ref-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="ref-prev-step">Prev Step</button>
+                                            <span id="ref-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="ref-next-step">Next Step</button>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-3" id="ref-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <!-- Placeholder for final results or errors -->
+                                    <div id="ref-result-placeholder" class="result-container">
+                                        <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reduced Row Echelon Form (RREF) Tab -->
+                <div class="tab-pane fade" id="rref" role="tabpanel" aria-labelledby="rref-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>Reduced Row Echelon Form (RREF) Calculator</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Matrix Dimensions:</label>
+                                        <div class="input-group">
+                                            <input type="number" id="rref-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <span class="input-group-text">×</span>
+                                            <input type="number" id="rref-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <button class="btn btn-primary" id="create-rref-matrix">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="rref-matrix-container" class="matrix-container">
+                                        <!-- Matrix will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-rref">Calculate RREF</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result (Steps)</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step-by-step container for RREF -->
+                                    <div id="rref-result-steps" class="step-container" style="display: none;"> 
+                                        <div id="rref-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="rref-step-matrix" class="matrix-container mb-3">Step matrix goes here...</div>
+                                        <div id="rref-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="rref-prev-step">Prev Step</button>
+                                            <span id="rref-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="rref-next-step">Next Step</button>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-3" id="rref-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <!-- Placeholder for final results or errors -->
+                                    <div id="rref-result-placeholder" class="result-container">
+                                        <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solve Equations Tab -->
+                <div class="tab-pane fade" id="equations" role="tabpanel" aria-labelledby="equations-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card input-card">
+                                <div class="card-header">
+                                    <h5>System of Linear Equations Solver</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Enter the <strong>augmented matrix</strong> representing your system of equations (coefficients + constant terms).</p>
+                                    <div class="mb-3">
+                                        <label class="form-label">Augmented Matrix Dimensions:</label>
+                                        <div class="input-group">
+                                            <input type="number" id="eqns-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <span class="input-group-text">×</span>
+                                            <input type="number" id="eqns-cols" class="form-control" min="2" max="11" value="4" placeholder="Columns (incl. constants)">
+                                            <button class="btn btn-primary" id="create-eqns-matrix">Create</button>
+                                        </div>
+                                    </div>
+                                    <div id="eqns-matrix-container" class="matrix-container">
+                                        <!-- Augmented Matrix will be created here -->
+                                    </div>
+                                    <button class="btn btn-success mt-3" id="calculate-eqns">Solve System</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card result-card">
+                                <div class="card-header">
+                                    <h5>Result (Steps: RREF + Solution)</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step-by-step container for Equation Solving -->
+                                    <div id="eqns-result-steps" class="step-container" style="display: none;"> 
+                                        <div id="eqns-step-description" class="step-description mb-2">Step description goes here...</div>
+                                        <div id="eqns-step-matrix" class="matrix-container mb-3">Step matrix goes here...</div>
+                                        <div id="eqns-step-navigation" class="step-navigation d-flex justify-content-between">
+                                            <button class="btn btn-outline-secondary btn-sm" id="eqns-prev-step">Prev Step</button>
+                                            <span id="eqns-step-counter" class="align-self-center">Step 1 / N</span>
+                                            <button class="btn btn-outline-secondary btn-sm" id="eqns-next-step">Next Step</button>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm mt-3" id="eqns-show-solution">Show Final Solution</button>
+                                    </div>
+                                    <!-- Placeholder -->
+                                    <div id="eqns-result-placeholder" class="result-container">
+                                        <div class="placeholder-text">Results will appear here</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
