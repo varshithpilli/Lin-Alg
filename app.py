@@ -1,8 +1,10 @@
 import numpy as np
 from flask import Flask, render_template, request, jsonify
 from logic import basis, eqns, inverse, ortho, rref, ref
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "https://lin-alg.vercel.app"}})
 
 # landing page
 @app.route('/')
