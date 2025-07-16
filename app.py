@@ -1,5 +1,5 @@
 import numpy as np
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from logic import basis, eqns, inverse, ortho, rref, ref
 from flask_cors import CORS
 
@@ -9,7 +9,7 @@ CORS(app, resources={r"/*": {"origins": "https://lin-alg.vercel.app"}})
 # landing page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return "Nothing to see here"
 
 # matrix inverse
 @app.route('/calculate/inverse', methods=['POST'])
