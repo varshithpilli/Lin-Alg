@@ -18,7 +18,6 @@ def calculate_inverse():
         steps = inverse.inverse_gauss_jordan(matrix)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps
         })
     except Exception as e:
@@ -26,7 +25,6 @@ def calculate_inverse():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(e)
         })
 
@@ -42,7 +40,6 @@ def calculate_orthonormal():
         steps = ortho.gram_schmidt(vectors)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps
         })
     except Exception as e:
@@ -50,7 +47,6 @@ def calculate_orthonormal():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(e)
         }), 400
     
@@ -63,13 +59,11 @@ def calculate_bases():
         steps = basis.matrix_space_bases(matrix)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps,
         })
     except ValueError as ve:
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(ve)
         }), 400
     
@@ -78,7 +72,6 @@ def calculate_bases():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500
 
@@ -94,13 +87,11 @@ def calculate_ref():
         steps = ref.row_echelon_form_steps(matrix)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(ve)
         }), 400
     except Exception as e:
@@ -108,7 +99,6 @@ def calculate_ref():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }),
 
@@ -124,13 +114,11 @@ def calculate_rref():
         steps = rref.row_reduced_echelon_form_steps(matrix)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(ve)
         }), 400
     except Exception as e:
@@ -138,7 +126,6 @@ def calculate_rref():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500
 
@@ -154,13 +141,11 @@ def calculate_equations():
         steps = eqns.solve_equations_steps(matrix)
         return jsonify({
             'success': True,
-            'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': str(ve)
         }), 400
     except Exception as e:
@@ -168,7 +153,6 @@ def calculate_equations():
         traceback.print_exc()
         return jsonify({
             'success': False,
-            'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500
 
