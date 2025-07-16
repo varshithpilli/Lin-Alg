@@ -1,0 +1,364 @@
+:root {
+    --dark-bg: #121212;
+    --dark-card: #1e1e1e;
+    --dark-card-header: #000000;
+    --accent: rgba(134, 31, 31, 0.8);
+    --text: #f0f0f0;
+    --subtle-text: #c0c0c0;
+    --matrix-border: #000000;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header h1 {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+header .lead {
+    color: var(--subtle-text);
+    font-size: 1.2rem;
+}
+
+.nav-tabs {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    color: var(--subtle-text);
+    border: none;
+    padding: 10px 20px;
+    margin-right: 5px;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--text);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--dark-card);
+    color: var(--text);
+    border: none;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-tabs .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--dark-card);
+}
+
+.tab-content {
+    background-color: var(--dark-card);
+    border-radius: 0 8px 8px 8px;
+    padding: 25px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 0;
+}
+
+.card {
+    background-color: #141414;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.card-header {
+    background-color: var(--dark-card-header);
+    color: var(--text);
+    border-bottom: none;
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-label {
+    color: var(--subtle-text);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.form-control, .input-group-text {
+    background-color: var(--dark-bg);
+    border: 1px solid #000000;
+    color: var(--text);
+    border-radius: 4px;
+}
+
+.form-control:focus {
+    background-color: var(--dark-bg);
+    color: var(--text);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(233, 69, 96, 0.25);
+}
+
+.btn-primary {
+    background-color: rgba(134, 31, 31, 0.8);
+    border-color: rgba(134, 31, 31, 0.8);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: rgba(134, 31, 31, 0.8);
+    border-color: rgba(134, 31, 31, 0.8);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-success:hover, .btn-success:focus {
+    background-color: rgba(134, 31, 31, 0.8);
+    border-color: rgba(134, 31, 31, 0.8);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.matrix-container, .vectors-container {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.matrix-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+}
+
+.matrix-table input {
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    background-color: gray;
+    border: 1px solid var(--matrix-border);
+    color: var(--text);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.matrix-table input:focus {
+    background-color: rgba(26, 26, 46, 1);
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.15);
+}
+
+.result-container {
+    min-height: 200px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.6);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.step-container {
+    padding: 10px;
+}
+
+.step-description {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 4px;
+    line-height: 1.6;
+}
+
+.step-description b {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.step-description .formula {
+    font-size: 1.15rem;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 2px 5px;
+}
+
+.step-description div[style*="margin-left"] {
+    margin-top: 10px !important;
+    padding-left: 10px;
+    border-left: 2px solid rgba(134, 31, 31, 0.3);
+}
+
+#ortho-step-vectors .result-vector {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
+
+#ortho-step-vectors .result-matrix-row {
+    margin-top: 5px;
+}
+
+#ortho-step-vectors .result-matrix-cell {
+    margin-right: 10px;
+    padding: 5px 8px;
+    min-width: 60px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.step-navigation {
+    margin-top: 20px;
+}
+
+.result-matrix {
+    margin: 20px auto;
+    border-left: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    padding: 0 15px;
+}
+
+.result-matrix-row {
+    display: flex;
+    justify-content: center;
+}
+
+.result-matrix-cell {
+    padding: 8px 12px;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Style for highlighted pivot elements */
+.pivot-highlight {
+    background-color: rgba(220, 53, 69, 0.35) !important; /* Red background */
+    border: 2px solid rgba(200, 30, 45, 0.9) !important;  /* Darker red border */
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 0 6px rgba(220, 53, 69, 0.5); /* Red glow */
+    color: #ffffff !important; /* Ensure text is readable */
+}
+
+/* Style for the separator line in augmented matrices */
+.augmented-separator {
+    border-right: 2px solid rgba(200, 200, 200, 0.6) !important; /* Visible gray line */
+    padding-right: 10px !important; /* Add some space after the cell before the line */
+    margin-right: 5px !important; /* Add some space after the line before the next cell */
+}
+
+.placeholder-text {
+    color: var(--subtle-text);
+    font-style: italic;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.result-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.5);
+    border-radius: 4px;
+    white-space: pre-wrap;
+    border-left: 3px solid var(--accent);
+}
+
+.eigenvalue-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.5);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+}
+
+.eigenvector-item {
+    margin-bottom: 10px;
+}
+
+.basis-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.5);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+}
+
+.basis-summary {
+    background-color: rgba(20, 20, 20, 0.5);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--accent);
+}
+
+.vector-label, .vector-item {
+    color: var(--text);
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #f8d7da;
+    border-color: rgba(220, 53, 69, 0.4);
+}
+
+@media (max-width: 768px) {
+    .tab-content {
+        padding: 15px !important;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+}
+
+/* Style for the cell needing a right border separator */
+.rhs-separator {
+    border-right: 1px solid var(--accent) !important; /* Thin accent color line */
+    padding-right: 8px !important; /* Space BEFORE the line */
+}
+
+/* Add space AFTER the line by padding the NEXT cell */
+.rhs-separator + td {
+    padding-left: 8px !important; /* Space AFTER the line */
+}
+
+.result-matrix {
+    display: inline-block;
+} 
