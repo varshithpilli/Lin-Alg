@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         inverseResultStepsContainer.style.display = 'none';
         inverseResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/inverse', {
+        fetch('https://lin-alg.onrender.com/calculate/inverse', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function() {
         orthoResultStepsContainer.style.display = 'none';
         orthoResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/orthonormal', {
+        fetch('https://lin-alg.onrender.com/calculate/orthonormal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
         basisResultStepsContainer.style.display = 'none';
         basisResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/bases', {
+        fetch('https://lin-alg.onrender.com/calculate/bases', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -795,7 +795,7 @@ document.addEventListener('DOMContentLoaded', function() {
         refResultStepsContainer.style.display = 'none';
         refResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/ref', {
+        fetch('https://lin-alg.onrender.com/calculate/ref', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rrefResultStepsContainer.style.display = 'none';
         rrefResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/rref', {
+        fetch('https://lin-alg.onrender.com/calculate/rref', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1016,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', function() {
         eqnsResultStepsContainer.style.display = 'none';
         eqnsResultPlaceholder.style.display = 'block';
 
-        fetch('/calculate/equations', {
+        fetch('https://lin-alg.onrender.com/calculate/equations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
