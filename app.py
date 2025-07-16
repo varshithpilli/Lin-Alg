@@ -1,6 +1,6 @@
 import numpy as np
 from flask import Flask, render_template, request, jsonify
-from .logic import utils, basis, eqns, inverse, ortho, rref, utils, ref
+from logic import basis, eqns, inverse, ortho, rref, ref
 
 app = Flask(__name__)
 
@@ -17,6 +17,7 @@ def calculate_inverse():
         matrix = np.array(data['matrix'], dtype=float)
         steps = inverse.inverse_gauss_jordan(matrix)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps
         })
@@ -24,6 +25,7 @@ def calculate_inverse():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(e)
         })
@@ -39,6 +41,7 @@ def calculate_orthonormal():
 
         steps = ortho.gram_schmidt(vectors)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps
         })
@@ -46,6 +49,7 @@ def calculate_orthonormal():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(e)
         }), 400
@@ -58,11 +62,13 @@ def calculate_bases():
         matrix = np.array(data['matrix'], dtype=float)
         steps = basis.matrix_space_bases(matrix)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps,
         })
     except ValueError as ve:
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(ve)
         }), 400
@@ -71,6 +77,7 @@ def calculate_bases():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500
@@ -86,11 +93,13 @@ def calculate_ref():
              
         steps = ref.row_echelon_form_steps(matrix)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(ve)
         }), 400
@@ -98,6 +107,7 @@ def calculate_ref():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }),
@@ -113,11 +123,13 @@ def calculate_rref():
              
         steps = rref.row_reduced_echelon_form_steps(matrix)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(ve)
         }), 400
@@ -125,6 +137,7 @@ def calculate_rref():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500
@@ -140,11 +153,13 @@ def calculate_equations():
              
         steps = eqns.solve_equations_steps(matrix)
         return jsonify({
+            'success': True,
             'status': "success",
             'steps': steps
         })
     except ValueError as ve:
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': str(ve)
         }), 400
@@ -152,6 +167,7 @@ def calculate_equations():
         import traceback
         traceback.print_exc()
         return jsonify({
+            'success': False,
             'status': "failed",
             'error': f"An unexpected server error occurred: {e}"
         }), 500

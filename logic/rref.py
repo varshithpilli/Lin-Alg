@@ -1,6 +1,6 @@
 import numpy as np
 from math import gcd
-import utils
+from . import utils
 
 def row_reduced_echelon_form_steps(matrix):
     """

@@ -1,6 +1,7 @@
 import numpy as np
 from math import gcd
-from rref import row_reduced_echelon_form_steps, format_matrix
+from . import rref
+from . import utils
 
 # def gauss_jordan_solver(augmented_matrix):
 #     """
@@ -124,7 +125,7 @@ def solve_equations_steps(augmented_matrix):
     except ValueError as e:
         raise ValueError(f"Invalid input matrix: {e}. Ensure it's a list of lists of numbers.")
 
-    rref_steps = row_reduced_echelon_form_steps(augmented_matrix)
+    rref_steps = rref.row_reduced_echelon_form_steps(augmented_matrix)
     
     final_rref_step = rref_steps[-1]
     A_rref = np.array(final_rref_step['matrix'], dtype=float)
@@ -156,7 +157,7 @@ def solve_equations_steps(augmented_matrix):
         
     rref_steps.append({
         'description': analysis_description,
-        'matrix': format_matrix(A_rref),
+        'matrix': utils.format_matrix(A_rref),
         'pivot_coord': None,
         'all_pivot_coords': pivots
     })
@@ -205,7 +206,7 @@ def solve_equations_steps(augmented_matrix):
             
         rref_steps.append({
             'description': solution_analysis_desc,
-            'matrix': format_matrix(A_rref),
+            'matrix': utils.format_matrix(A_rref),
             'pivot_coord': None,
             'all_pivot_coords': pivots
         })
@@ -217,7 +218,7 @@ def solve_equations_steps(augmented_matrix):
     
     rref_steps.append({
          'description': summary_desc,
-         'matrix': format_matrix(A_rref),
+         'matrix': utils.format_matrix(A_rref),
          'pivot_coord': None,
          'all_pivot_coords': pivots
      })
