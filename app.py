@@ -4,7 +4,7 @@ from logic import basis, eqns, inverse, ortho, rref, ref
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://lin-alg.vercel.app"}})
+CORS(app, resources={r"/*": {"origins": "https://lin-alg.varzone.in"}})
 
 # landing page
 @app.route('/')
