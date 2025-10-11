@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cols = parseInt(basisCols.value);
         const matrix = getMatrixFromTable('basis', rows, cols);
 
-        // Show loading indicator
+
         basisResultPlaceholder.innerHTML = '<div class="placeholder-text">Calculating...</div>';
         basisResultStepsContainer.style.display = 'none';
         basisResultPlaceholder.style.display = 'block';

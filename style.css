@@ -362,3 +362,15 @@ header .lead {
 .result-matrix {
     display: inline-block;
 } 
+
+/* Remove spinner arrows from all number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield !important; /* Firefox */
+    appearance: textfield !important;
+}

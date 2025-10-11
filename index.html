@@ -51,7 +51,7 @@
                                     <div class="mb-3">
                                         <label for="inverse-size" class="form-label">Square Matrix Size:</label>
                                         <div class="input-group">
-                                            <input type="number" id="inverse-size" class="form-control" min="1" max="10" value="3" placeholder="Size (e.g., 3 for 3x3)">
+                                            <input type="number" id="inverse-size" class="form-control no-spin" min="1" max="10" value="3" placeholder="Size (e.g., 3 for 3x3)">
                                             <button class="btn btn-primary" id="create-inverse-matrix">Create</button>
                                         </div>
                                     </div>
@@ -100,11 +100,11 @@
                                         <label class="form-label">Vector Dimensions:</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Number of vectors:</span>
-                                            <input type="number" id="ortho-vectors" class="form-control" min="1" max="10" value="3" placeholder="Vectors">
+                                            <input type="number" id="ortho-vectors" class="form-control no-spin" min="1" max="10" value="3" placeholder="Vectors">
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-text">Dimension of each vector:</span>
-                                            <input type="number" id="ortho-dimension" class="form-control" min="1" max="10" value="3" placeholder="Dimension">
+                                            <input type="number" id="ortho-dimension" class="form-control no-spin" min="1" max="10" value="3" placeholder="Dimension">
                                             <button class="btn btn-primary" id="create-vectors">Create</button>
                                         </div>
                                     </div>
@@ -154,9 +154,9 @@
                                     <div class="mb-3">
                                         <label class="form-label">Matrix Dimensions:</label>
                                         <div class="input-group">
-                                            <input type="number" id="basis-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <input type="number" id="basis-rows" class="form-control no-spin" min="1" max="10" value="3" placeholder="Rows">
                                             <span class="input-group-text">×</span>
-                                            <input type="number" id="basis-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <input type="number" id="basis-cols" class="form-control no-spin" min="1" max="10" value="3" placeholder="Columns">
                                             <button class="btn btn-primary" id="create-basis-matrix">Create</button>
                                         </div>
                                     </div>
@@ -206,9 +206,9 @@
                                     <div class="mb-3">
                                         <label class="form-label">Matrix Dimensions:</label>
                                         <div class="input-group">
-                                            <input type="number" id="ref-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <input type="number" id="ref-rows" class="form-control no-spin" min="1" max="10" value="3" placeholder="Rows">
                                             <span class="input-group-text">×</span>
-                                            <input type="number" id="ref-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <input type="number" id="ref-cols" class="form-control no-spin" min="1" max="10" value="3" placeholder="Columns">
                                             <button class="btn btn-primary" id="create-ref-matrix">Create</button>
                                         </div>
                                     </div>
@@ -258,9 +258,9 @@
                                     <div class="mb-3">
                                         <label class="form-label">Matrix Dimensions:</label>
                                         <div class="input-group">
-                                            <input type="number" id="rref-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <input type="number" id="rref-rows" class="form-control no-spin" min="1" max="10" value="3" placeholder="Rows">
                                             <span class="input-group-text">×</span>
-                                            <input type="number" id="rref-cols" class="form-control" min="1" max="10" value="3" placeholder="Columns">
+                                            <input type="number" id="rref-cols" class="form-control no-spin" min="1" max="10" value="3" placeholder="Columns">
                                             <button class="btn btn-primary" id="create-rref-matrix">Create</button>
                                         </div>
                                     </div>
@@ -311,9 +311,9 @@
                                     <div class="mb-3">
                                         <label class="form-label">Augmented Matrix Dimensions:</label>
                                         <div class="input-group">
-                                            <input type="number" id="eqns-rows" class="form-control" min="1" max="10" value="3" placeholder="Rows">
+                                            <input type="number" id="eqns-rows" class="form-control no-spin" min="1" max="10" value="3" placeholder="Rows">
                                             <span class="input-group-text">×</span>
-                                            <input type="number" id="eqns-cols" class="form-control" min="2" max="11" value="4" placeholder="Columns (incl. constants)">
+                                            <input type="number" id="eqns-cols" class="form-control no-spin" min="2" max="11" value="4" placeholder="Columns (incl. constants)">
                                             <button class="btn btn-primary" id="create-eqns-matrix">Create</button>
                                         </div>
                                     </div>
