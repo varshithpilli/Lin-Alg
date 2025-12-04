@@ -1,5 +1,4 @@
 base_url = "https://lin-alg.onrender.com"
-// base_url = "localhost:8080"
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded. Initializing script...'); // Check if this block runs
