@@ -2,4 +2,8 @@
 
 pip freeze > requirements.txt
 
-uvicorn app:app --reload
+dev:
+flask run
+
+prod:
+gunicorn app:app
