@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://varzone.in/Lin-Alg/"}})
+# CORS(app, resources={r"/*": {"origins": "*"}})
 
 # landing page
 @app.route('/')
